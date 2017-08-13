@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Azima</string>
+    <string name="fast_affordable_loans_directly_to_your_phone">Fast, affordable loans directly to your phone.</string>
+    <string name="already_have_an_account_sign_in">Already have an account? Sign In</string>
+    <string name="create_your_account">Create your account</string>
+    <string name="azima_logo">Azima Logo</string>
 </resources>
