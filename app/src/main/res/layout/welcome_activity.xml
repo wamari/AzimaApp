@@ -40,7 +40,8 @@
                 android:textAlignment="center"
                 android:fontFamily="sans-serif-smallcaps"
                 android:textColor="@android:color/white"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                android:onClick="login"/>
 
             <Button
                 android:id="@+id/buttonCreateAccount"
