@@ -21,6 +21,11 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    public void CreateAccount(View view){
+        Intent intent  =  new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
     
     //// TODO: 8/14/17 Request permissions to read sms, contacts, location and calls.
     //// TODO: 8/14/17 Remember shared preferences such as user already signed in.
