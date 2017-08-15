@@ -9,4 +9,12 @@
     <string name="back">back</string>
     <string name="next">next</string>
     <string name="cancel">Cancel</string>
+    <string name="female">Female</string>
+    <string name="date_of_birth_dd_mm_yyyy">Date of Birth (DD/MM/YYYY)</string>
+    <string name="email_address">Email Address</string>
+    <string name="first_name">First Name</string>
+    <string name="gender">Gender</string>
+    <string name="other_names">Other Names</string>
+    <string name="male">Male</string>
+    <string name="national_id_number">National ID Number</string>
 </resources>
