@@ -7,10 +7,20 @@
     android:background="@android:color/white"
     tools:context="com.harlertechnologies.azima.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:text="Welcome"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark" />
+
 <android.support.v7.widget.RecyclerView
     android:id="@+id/card_recycler_view"
     android:scrollbars="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
