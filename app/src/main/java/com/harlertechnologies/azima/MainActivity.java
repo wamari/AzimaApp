@@ -10,31 +10,17 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private final String android_version_names[] = {
-            "Donut",
-            "Eclair",
-            "Froyo",
+            "Loan Application",
+            "Pay Loan",
             "Gingerbread",
-            "Honeycomb",
-            "Ice Cream Sandwich",
-            "Jelly Bean",
-            "KitKat",
-            "Lollipop",
-            "Marshmallow",
-            "Marshmallow"
+            "Earn Rewards"
     };
 
     private final String android_image_urls[] = {
-            "https://api.learn2crack.com/android/images/donut.png",
-            "https://api.learn2crack.com/android/images/eclair.png",
-            "https://api.learn2crack.com/android/images/froyo.png",
+            "http://icons.iconarchive.com/icons/icons8/windows-8/128/Finance-Cash-Receiving-icon.png",
+            "http://icons.iconarchive.com/icons/designcontest/ecommerce-business/128/wallet-icon.png",
             "https://api.learn2crack.com/android/images/ginger.png",
-            "https://api.learn2crack.com/android/images/honey.png",
-            "https://api.learn2crack.com/android/images/icecream.png",
-            "https://api.learn2crack.com/android/images/jellybean.png",
-            "https://api.learn2crack.com/android/images/kitkat.png",
-            "https://api.learn2crack.com/android/images/lollipop.png",
-            "https://api.learn2crack.com/android/images/marshmallow.png",
-            "https://api.learn2crack.com/android/images/marshmallow.png"
+            "http://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/reward-icon.png"
     };
 
 
@@ -47,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews(){
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<AndroidVersion> androidVersions = prepareData();
