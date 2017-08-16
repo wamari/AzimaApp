@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
             "Jelly Bean",
             "KitKat",
             "Lollipop",
+            "Marshmallow",
             "Marshmallow"
     };
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             "https://api.learn2crack.com/android/images/jellybean.png",
             "https://api.learn2crack.com/android/images/kitkat.png",
             "https://api.learn2crack.com/android/images/lollipop.png",
+            "https://api.learn2crack.com/android/images/marshmallow.png",
             "https://api.learn2crack.com/android/images/marshmallow.png"
     };
 
