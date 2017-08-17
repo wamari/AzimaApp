@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private final String android_version_names[] = {
             "Loan Application",
             "Pay Loan",
-            "Gingerbread",
+            "Invites",
             "Earn Rewards"
     };
 
