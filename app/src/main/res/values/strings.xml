@@ -17,4 +17,7 @@
     <string name="other_names">Other Names</string>
     <string name="male">Male</string>
     <string name="national_id_number">National ID Number</string>
+
+    <string name="permissions_not_granted_read_phone_state">Azima uses your phone\'s data to make lending decisions. Please grant all requested permissions to continue using Azima</string>
+    <string name="permission_available_read_phone_state">Azima respects your privacy</string>
 </resources>

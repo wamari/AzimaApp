@@ -1,8 +1,17 @@
 package com.harlertechnologies.azima;
 
 import java.util.Calendar;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -12,11 +21,15 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText date;
+    String phone_imei;
+
+    private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        readIMEI();
 
 
         date = (EditText) findViewById(R.id.editTextDOB);
@@ -94,6 +107,72 @@ public class RegisterActivity extends AppCompatActivity {
     public void SignUp(View view){
         Toast.makeText(RegisterActivity.this,"Validate, save and Load the main activity", Toast.LENGTH_SHORT).show();
     }
-    
-    //// TODO: 8/15/17 READ PHONE IMEI AND SAVE TO DATABASE 
+
+    public void readIMEI(){
+        //check if the READ_PHONE_STATE permission is already available
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED){
+            //READ_PHONE_STATE permission has not been granted
+            requestReadPhoneStatePermission();
+        }else {
+            //READ_PHONE_STATE PERMISSION HAS BEEN GRANTED
+            //Have an  object of TelephonyManager
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            //GET IMEI NUMBER OF PHONE
+            phone_imei = tm.getDeviceId();
+            Toast.makeText(this, "PHONE IMEI: " +phone_imei,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void requestReadPhoneStatePermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_PHONE_STATE)){
+            new AlertDialog.Builder(RegisterActivity.this)
+                    .setTitle("Permission Request")
+                    .setCancelable(false)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //re-request
+                            ActivityCompat.requestPermissions(RegisterActivity.this,
+                                    new String[]{Manifest.permission.READ_PHONE_STATE},
+                                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                        }
+                    })
+                    .show();
+        }else{
+            // READ_PHONE_STATE permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
+                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if(requestCode == MY_PERMISSIONS_REQUEST_READ_PHONE_STATE){
+            // Received permission result for READ_PHONE_STATE permission.est.");
+            // Check if the only required permission has been granted
+            if (grantResults.length ==1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                // READ_PHONE_STATE permission has been granted, proceed with displaying IMEI Number
+                alertAlert(getString(R.string.permission_available_read_phone_state));
+                //doPermissionGrantedStuff();
+            }else{
+                alertAlert(getString(R.string.permissions_not_granted_read_phone_state));
+            }
+        }
+    }
+
+    private void alertAlert(String msg) {
+        new AlertDialog.Builder(RegisterActivity.this)
+                .setTitle("Permission Required")
+                .setMessage(msg)
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do something here
+                    }
+                })
+                .show();
+    }
 }
