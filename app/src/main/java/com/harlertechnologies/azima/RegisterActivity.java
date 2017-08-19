@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText date;
-    String phone_imei;
+    String phone_IMEI;
 
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
 
@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         readIMEI();
 
 
-        date = (EditText) findViewById(R.id.editTextDOB);
+        date = findViewById(R.id.editTextDOB);
         date.addTextChangedListener(tw);
     }
 
@@ -119,8 +119,8 @@ public class RegisterActivity extends AppCompatActivity {
             //Have an  object of TelephonyManager
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             //GET IMEI NUMBER OF PHONE
-            phone_imei = tm.getDeviceId();
-            Toast.makeText(this, "PHONE IMEI: " +phone_imei,Toast.LENGTH_SHORT).show();
+            phone_IMEI = tm.getDeviceId();
+            Toast.makeText(this, "PHONE IMEI: " +phone_IMEI,Toast.LENGTH_SHORT).show();
         }
     }
 
