@@ -160,6 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
                 alertAlert(getString(R.string.permission_available_read_phone_state));
                 //doPermissionGrantedStuff();
                 checkLocationPermission();
+                //// TODO: 8/19/17 Request SMS permissions 
             }else{
                 alertAlert(getString(R.string.permissions_not_granted_read_phone_state));
             }
