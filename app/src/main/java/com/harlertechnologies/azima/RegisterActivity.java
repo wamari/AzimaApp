@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     String phone_IMEI;
 
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
                 // READ_PHONE_STATE permission has been granted, proceed with displaying IMEI Number
                 alertAlert(getString(R.string.permission_available_read_phone_state));
                 //doPermissionGrantedStuff();
+                checkLocationPermission();
             }else{
                 alertAlert(getString(R.string.permissions_not_granted_read_phone_state));
             }
@@ -174,5 +177,37 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public boolean checkLocationPermission(){
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                !=PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)){
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.title_location_permission)
+                        .setMessage(R.string.text_location_permission)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i){
+                                //prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(RegisterActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+            }else{
+                //no explanation needed, we can request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        }else{
+            return true;
+        }
     }
 }

@@ -20,4 +20,8 @@
 
     <string name="permissions_not_granted_read_phone_state">Azima uses your phone\'s data to make lending decisions. Please grant all requested permissions to continue using Azima</string>
     <string name="permission_available_read_phone_state">Azima respects your privacy</string>
+
+    <string name="title_location_permission">Permission Request</string>
+    <string name="text_location_permission">Azima uses your phone\'s location to make lending decisions. Please grant all requested permissions to continue using Azima</string>
+    <string name="ok">OK</string>
 </resources>
