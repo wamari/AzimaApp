@@ -43,11 +43,11 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextPIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_bottom_line"
-        android:ems="10"
+        android:ems="6"
         android:textSize="18sp"
         android:textColor="@android:color/white"
         android:inputType="numberPassword"
@@ -99,5 +99,5 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintVertical_bias="1.0"
-        android:onClick="loadMain"/>
+        android:onClick="loadLogin"/>
 </android.support.constraint.ConstraintLayout>

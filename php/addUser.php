@@ -12,11 +12,12 @@
 	 //set loan limi to Ksh.1000
 	 $loan_limit = 1000;
 	 $phone = $_POST['phone'];
+	 $pin = $_POST['pin'];
 	 //date of entry
 	 $date_created = date('Y-m-d H:i:s');
 
 	 //Creating an sql query
-	 $sql = "INSERT INTO tblUsers (firstname, othernames, email, gender, idno, dob, imei, loan_limit, phone, date_created) VALUES('$firstname','$othernames','$email'.'$email','$gender','$idno','$dob','$imei','$loan_limit','$phone','$date_created')";
+	 $sql = "INSERT INTO tblUsers (firstname, othernames, email, gender, idno, dob, imei, loan_limit, phone, pin, date_created) VALUES('$firstname','$othernames','$email'.'$email','$gender','$idno','$dob','$imei','$loan_limit','$phone','$pin','$date_created')";
 
 	 //Importing our db connection script
 	 require_once('dbConnect.php');

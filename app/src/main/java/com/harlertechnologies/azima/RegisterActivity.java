@@ -17,12 +17,29 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText date;
     String phone_IMEI;
+
+    String userGender;
+
+    private EditText editTextFirstName;
+    private EditText editTextOtherNames;
+    private EditText editTextEmail;
+    private EditText editTextIDNo;
+    private EditText editTextDOB;
+    private EditText editTextPhoneNo;
+    private EditText editTextPIN;
+    private EditText editTextConfirm;
+
+    private static final String REGISTER_URL = "http://harlertechnologies.com/azima/addUser.php";
+
+
+
 
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -31,6 +48,18 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        editTextFirstName = findViewById(R.id.editTextFirstName);
+        editTextOtherNames = findViewById(R.id.editTextOtherNames);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextIDNo = findViewById(R.id.editTextIDNo);
+        editTextDOB = findViewById(R.id.editTextDOB);
+        editTextPhoneNo = findViewById(R.id.editTextPhoneNo);
+        editTextPIN = findViewById(R.id.editTextPIN);
+        editTextConfirm = findViewById(R.id.editTextConfirm);
+
+
+        //// TODO: 8/21/17 Remember to insert IMEI
         readIMEI();
 
 
@@ -108,6 +137,26 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void SignUp(View view){
         Toast.makeText(RegisterActivity.this,"Validate, save and Load the main activity", Toast.LENGTH_SHORT).show();
+        //// TODO: 8/21/17 Register user and load login activity 
+    }
+
+    public void radioButtonClicked(View view){
+        //This variable will store whether the user was male or female
+        userGender = "";
+        // Check that the button is  now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        //check which radio button is checked
+        switch (view.getId()){
+            case R.id.radioMale:
+                if (checked)
+                    userGender="Male";
+                break;
+            case R.id.radioFemale:
+                if(checked)
+                    userGender="Female";
+                break;
+        }
+
     }
 
     public void readIMEI(){
@@ -210,5 +259,13 @@ public class RegisterActivity extends AppCompatActivity {
         }else{
             return true;
         }
+    }
+
+
+    private void addUser(){
+        //// TODO: 8/21/17 http://www.vetbossel.in/android-login-registration-form-php-mysql/
+
+        String fisrtName = editTextFirstName.getText().toString().trim();
+        String otherNames = editTextOtherNames.getText().toString().trim();
     }
 }

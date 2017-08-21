@@ -17,8 +17,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void loadMain(View view){
-        Intent intent  =  new Intent(this, MainActivity.class);
+    public void loadLogin(View view){
+        Intent intent  =  new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }
