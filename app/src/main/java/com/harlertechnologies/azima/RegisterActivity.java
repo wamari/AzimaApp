@@ -1,11 +1,17 @@
 package com.harlertechnologies.azima;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Calendar;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -35,10 +41,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextPhoneNo;
     private EditText editTextPIN;
     private EditText editTextConfirm;
-
-    private static final String REGISTER_URL = "http://harlertechnologies.com/azima/addUser.php";
-
-
 
 
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
@@ -261,11 +263,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-
-    private void addUser(){
-        //// TODO: 8/21/17 http://www.vetbossel.in/android-login-registration-form-php-mysql/
-
-        String fisrtName = editTextFirstName.getText().toString().trim();
-        String otherNames = editTextOtherNames.getText().toString().trim();
-    }
 }
