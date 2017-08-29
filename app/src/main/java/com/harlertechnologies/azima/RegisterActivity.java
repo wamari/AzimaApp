@@ -1,10 +1,7 @@
 package com.harlertechnologies.azima;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -24,9 +21,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText date;
     String phone_IMEI;
@@ -42,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextPIN;
     private EditText editTextConfirm;
 
+    private TextView textview4;
+
 
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -51,7 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editTextFirstName = findViewById(R.id.editTextFirstName);
+        //initializing views
+        editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
         editTextOtherNames = findViewById(R.id.editTextOtherNames);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextIDNo = findViewById(R.id.editTextIDNo);
@@ -60,10 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPIN = findViewById(R.id.editTextPIN);
         editTextConfirm = findViewById(R.id.editTextConfirm);
 
-
-        //// TODO: 8/21/17 Remember to insert IMEI
-        readIMEI();
-
+        textview4 = (TextView) findViewById(R.id.textView4);
+        textview4.setOnClickListener(this);
 
         date = findViewById(R.id.editTextDOB);
         date.addTextChangedListener(tw);
@@ -137,9 +136,59 @@ public class RegisterActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void SignUp(View view){
-        Toast.makeText(RegisterActivity.this,"Validate, save and Load the main activity", Toast.LENGTH_SHORT).show();
-        //// TODO: 8/21/17 Register user and load login activity 
+    public void SignUp(){
+        //Toast.makeText(RegisterActivity.this,"Validate, save and Load the main activity", Toast.LENGTH_SHORT).show();
+        //// TODO: 8/21/17 Register user and load login activity
+
+        readIMEI();
+
+        final String firstname = editTextFirstName.getText().toString().trim();
+        final String othernames = editTextOtherNames.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
+        final String gender = userGender;
+        final String idno = editTextIDNo.getText().toString().trim();
+        final String dob = editTextDOB.getText().toString().trim();
+        final String imei = phone_IMEI;
+        final String phone = editTextPhoneNo.getText().toString().trim();
+        final String pin = editTextPIN.getText().toString().trim();
+
+        class AddAccount extends AsyncTask<Void, Void, String>{
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute(){
+                super.onPreExecute();
+                loading = ProgressDialog.show(RegisterActivity.this,"Adding...","Wait...", false, false);
+            }
+
+            @Override
+            protected void onPostExecute(String s){
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            protected String doInBackground(Void...v){
+                HashMap<String, String> params = new HashMap<>();
+                params.put(Config.KEY_FIRSTNAME, firstname);
+                params.put(Config.KEY_OTHERNAMES, othernames);
+                params.put(Config.KEY_EMAIL, email);
+                params.put(Config.KEY_GENDER, gender);
+                params.put(Config.KEY_IDNO, idno);
+                params.put(Config.KEY_DOB, dob);
+                params.put(Config.KEY_IMEI, imei);
+                params.put(Config.KEY_PHONE, phone);
+                params.put(Config.KEY_PIN,pin);
+
+                RequestHandler rh = new RequestHandler();
+                String res = rh.sendPostRequest(Config.URL_ADD, params);
+                return res;
+            }
+        }
+        AddAccount aa = new AddAccount();
+        aa.execute();
+
     }
 
     public void radioButtonClicked(View view){
@@ -263,4 +312,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view == textview4){
+            SignUp();
+        }
+    }
 }

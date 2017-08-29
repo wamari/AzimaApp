@@ -1,6 +1,5 @@
 <?php
  if($_SERVER['REQUEST_METHOD']=='POST'){
-
 	 //Getting values
 	 $firstname = $_POST['firstname'];
 	 $othernames = $_POST['othernames'];
@@ -15,7 +14,7 @@
 	 $pin = $_POST['pin'];
 	 //date of entry
 	 $date_created = date('Y-m-d H:i:s');
-	 $status = "pending" //account status can be pending, active, inactive
+	 $status = "pending"; //account status can be pending, active, inactive
 
 	 //Creating an sql query
 	 $sql = "INSERT INTO tblUsers (firstname, othernames, email, gender, idno, dob, imei, loan_limit, phone, pin, date_created, status) VALUES('$firstname','$othernames','$email'.'$email','$gender','$idno','$dob','$imei','$loan_limit','$phone','$pin','$date_created','$status')";
@@ -25,9 +24,9 @@
 
 	 //Executing query to database
 	 if(mysqli_query($con,$sql)){
-	 	echo 'Account created Successfully';
+	 	echo 'Profile created Successfully';
 	 }else{
-	   echo 'Could not create Account';
+	   echo 'Could not create your profile';
 	 }
 
 	 //Closing the database

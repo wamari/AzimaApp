@@ -25,5 +25,7 @@
     <string name="text_location_permission">Azima uses your phone\'s location to make lending decisions. Please grant all requested permissions to continue using Azima</string>
     <string name="ok">OK</string>
     <string name="phone_number">Phone Number</string>
-    <string name="string_phone_number" />
+    <string name="string_phone_number">Enter Phone No: 2547XXXXXXXX</string>
+    <string name="enter_pin">Enter PIN</string>
+    <string name="confirm_pin">Confirm PIN</string>
 </resources>
